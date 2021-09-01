@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Giỏ Hàng</title>
+	<div th:replace="/customer/common::header-css"></div>
+</head>
+<body>
+<div th:replace="/customer/common::header"></div>
+<div class="cart">
+	<div class="container">
+		<h1 class="heading">GIỎ HÀNG</h1>
+		<p th:if="${cart.isEmptyCart()}">
+			Chưa có hàng trong giỏ. Mua thêm sản phẩm <a href="/"><strong>Tại đây</strong></a>
+		</p>
+		<th:block th:unless="${cart.isEmptyCart()}">
+			<div class="table-responsive">
+				<table class="table table-striped">
+					<thead class="table-primary">
+					<tr>
+						<th>#</th>
+						<th>Hình ảnh</th>
+						<th>Tên sản phẩm</th>
+						<th>Đơn giá</th>
+						<th>Số lượng</th>
+						<th>Thành tiền</th>
+						<th>Xóa</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr th:each="item,iter: ${cart.getItemsInCart()}">
+						<td th:text="${iter.count}"></td>
+						<td>
+							<img
+									th:src="${item.plant.thumbnail}"
+									alt="img"
+									class="img-fluid"
+									width="80"
+							/>
+						</td>
+						<td th:text="${item.plant.name}"></td>
+						<td th:text="${#numbers.formatInteger(item.plant.price,3,'COMMA')}+' VND'"></td>
+						<td class="text-nowrap">
+							<a th:href="'/cart/remove?id='+${item.plant.id}" class="btn p-0">
+								<i class="bx bx-down-arrow"></i>
+							</a>
+							<span th:text="${item.quantity}"></span>
+							<a th:href="'/cart/add?id='+${item.plant.id}" class="btn p-0">
+								<i class="bx bx-up-arrow"></i>
+							</a>
+						</td>
+						<td th:text="${#numbers.formatInteger(item.getSum(),3,'COMMA')}+' VND'"></td>
+						<td>
+							<a class="btn btn-danger" th:href="'/cart/remove_all?id='+${item.plant.id}">
+								<i class="bx bx-trash"></i>
+							</a>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="text-end">
+				Tổng cộng: <strong class="text-danger" th:text="${#numbers.formatInteger(cart.getCartTotal(),3,'COMMA')}+' VND'"></strong>
+			</div>
+			<div class="cart-actions">
+				<a class="btn btn-primary" href="/order/address">Thanh toán</a>
+				<a class="btn btn-secondary" href="/">Tiếp tục mua hàng</a>
+			</div>
+		</th:block>
+	</div>
+</div>
+<div th:replace="/customer/common::footer"></div>
+</body>
+</html>

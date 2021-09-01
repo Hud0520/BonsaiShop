@@ -31,6 +31,14 @@ public class Cart {
 			throw new NoSuchElementException();
 		}
 	}
+
+	public void removeAll(long plantId){
+		if(items.containsKey(plantId)){
+			items.remove(plantId);
+		} else {
+			throw new NoSuchElementException();
+		}
+	}
 	public long getCartTotal(){
 		return items.values().stream().mapToLong(CartItem::getSum).sum();
 	}

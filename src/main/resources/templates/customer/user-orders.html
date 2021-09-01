@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Đơn Hàng Của Tôi</title>
+	<div th:replace="/customer/common::header-css"></div>
+</head>
+<body>
+<div th:replace="/customer/common::header"></div>
+<div class="account-info" th:object="${user}">
+	<div class="container">
+		<h1>THÔNG TIN TÀI KHOẢN</h1>
+		<div class="row">
+			<div class="col-12 col-md-4">
+				<th:block th:replace="/customer/common::account-menu"/>
+			</div>
+			<div class="col-12 col-md-8">
+				<div class="order-table">
+					<h2>ĐƠN HÀNG CỦA TÔI</h2>
+					<p th:if="${#sets.isEmpty(orders)}">Bạn chưa có đơn hàng nào!</p>
+					<th:block th:unless="${#sets.isEmpty(orders)}">
+						<p>Danh sách đơn hàng đã đặt</p>
+						<table class="table table-striped">
+							<thead class="table-primary">
+							<tr>
+								<th>#</th>
+								<th>Ngày yêu cầu</th>
+								<th>Yêu cầu</th>
+								<th>Tổng tiền</th>
+								<th>Tình trạng</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr th:each="order,iter: ${orders}">
+								<td th:text="${iter.count}"></td>
+								<td th:text="${#calendars.format(order.getOrderDate(),'yyyy-MM-dd')}"></td>
+								<td th:text="${order.extra}"></td>
+								<td th:text="${#numbers.formatInteger(order.getSum(),3,'COMMA')}+' VND'"></td>
+								<td th:text="${order.status}"></td>
+							</tr>
+							</tbody>
+						</table>
+					</th:block>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div th:replace="/customer/common::footer"></div>
+</body>
+</html>

@@ -5,15 +5,21 @@ import com.t9.bsshop.repository.CategoryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
+
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
 public class CategoryService {
     @Autowired
     private CategoryRepo cr;
-
+    @Cacheable("categories")
+    public List<Category> getCategories(){
+      return cr.findAll();
+    }
     public List<Category> getAll(){
         return this.cr.findAll(Sort.by(Sort.Direction.DESC,"id"));
     }
@@ -54,4 +60,5 @@ public class CategoryService {
             return false;
         }
     }
+
 }
