@@ -13,7 +13,6 @@
 <c:if test="${blog.id != null}">
     <c:set var="name" value="${blog.title}"/>
     <c:set var="content" value="${blog.content}"/>
-    <c:set var="slug" value="${blog.slug}"/>
     <fmt:formatDate value="${blog.createDate}" pattern="yyyy-MM-dd" var="create"></fmt:formatDate>
     <c:set var="title" value="Sửa Blog - tin tức"/>
 </c:if>
@@ -65,9 +64,9 @@
                             </div>
                         </div>
                         <div class="row m-3">
-                            <label for="txtSlug" class="col-sm-2 col-form-label text-end">Slug</label>
+                            <label for="txtSlug" class="col-sm-2 col-form-label text-end">Thumbnail</label>
                             <div class="col-sm-10">
-                                <input type="text" name="txtSlug" class="form-control" id="txtSlug" value="${slug}">
+                                <input type="file" name="txtSlug" class="form-control" id="txtSlug"">
                             </div>
                         </div>
                         <div class="row m-3">

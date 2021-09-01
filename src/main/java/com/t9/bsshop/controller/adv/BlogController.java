@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
 @Controller
 @RequestMapping("/adv/blog")
 public class BlogController {
@@ -60,11 +64,16 @@ public class BlogController {
     @RequestMapping(value = {"/ae/add"})
     public String addblogPage(Model model, @RequestParam(value = "txtName") String name,
                            @RequestParam(value = "txtNotes") String dep,
-                           @RequestParam(value = "txtSlug") String slug,
+                           @RequestParam(value = "txtSlug") File slug,
                            @RequestParam(value = "typ") int typ)
     {
-        if(!"".equalsIgnoreCase(name) && !"".equalsIgnoreCase(dep) && !"".equalsIgnoreCase(slug)){
-            bs.addBlog(name,dep,slug);
+        if(!"".equalsIgnoreCase(name) && !"".equalsIgnoreCase(dep) && slug!=null){
+            try {
+                FileOutputStream fo = new FileOutputStream(System.getProperty("user.dir")+"/src/main/webapp/assets/img/"+slug.getName());
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            bs.addBlog(name,dep,slug.getName());
             switch (typ){
                 case 1: return "redirect:/adv/blog";
                 case 2: return "redirect:/adv/blog/ae";
@@ -78,11 +87,16 @@ public class BlogController {
     @RequestMapping(value = {"/ae/edit"})
     public String editblogPage(Model model, @RequestParam(value = "txtName") String name,
                            @RequestParam(value = "txtNotes") String dep,
-                           @RequestParam(value = "txtSlug") String slug,
+                           @RequestParam(value = "txtSlug") File slug,
                            @RequestParam(value = "txtId") long id)
     {
-        if(!"".equalsIgnoreCase(name) && !"".equalsIgnoreCase(dep) && !"".equalsIgnoreCase(slug)){
-            bs.editBlog(id,name,dep,slug);
+        if(!"".equalsIgnoreCase(name) && !"".equalsIgnoreCase(dep) && slug != null){
+            try {
+                FileOutputStream fo = new FileOutputStream(System.getProperty("user.dir")+"/src/main/webapp/assets/img/"+slug.getName());
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            bs.editBlog(id,name,dep,slug.getName());
             return "redirect:/adv/blog";
         }else{
             return "redirect:/adv/blog/ae?err=invalid";

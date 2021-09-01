@@ -23,7 +23,8 @@ public class AccService {
     public long getTotal(){
         return this.ar.count();
     }
-    public Object getById(long id){
+
+    public Account getById(long id){
         return this.ar.getById(id);
     }
 
