@@ -39,7 +39,7 @@ public class Order extends BaseEntity{
 	
 	@OneToMany(mappedBy = "order",cascade = CascadeType.ALL)
 	private List<OrderDetails> orderDetails;
-	
+
 	public String getStatus() {
 		return status;
 	}
@@ -106,4 +106,5 @@ public class Order extends BaseEntity{
 	public long getSum(){
 		return orderDetails.stream().reduce(0l,(sum,details)->sum+details.getSum(), Long::sum);
 	}
+
 }
