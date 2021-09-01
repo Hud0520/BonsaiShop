@@ -1,0 +1,130 @@
+﻿/* Các xử lý định dạng cho login.html*/
+
+@import url('basic.css');
+@import url('all.css');
+/***************************************/
+.logo, .acc{
+	height:5vh;
+	line-height:5vh;
+}
+.acc h1{
+	font-size: 18px;
+}
+
+.acc a{
+	color : white;
+}
+.acc span{
+	font-size:30px;
+}
+
+/***************************************/
+.menu{
+	height:auto;
+
+}
+
+.card-body{
+	padding:5px 30px !important;
+}
+.view{
+	min-height: 100vh;
+}
+.view .title{
+	
+}
+
+.view .content .tblview {
+	border-top: 1px solid #ddd;
+	border-left:1px solid #ddd;
+	font-size : 13px;
+}
+table th{
+	background: #555;
+	font-weight: 700;
+	color: #fff;
+}
+table th, table td{
+	padding: 10px 12px;
+}
+.view .content .tblview th,
+.view .content .tblview td{
+	border-right: 1px solid #ddd;
+	border-bottom:1px solid #ddd;
+}
+.view .content .tblview img{
+	width: 100%;
+	height: auto;
+}
+.view .content .tblview th{
+	text-align: center;
+}
+.view .content .tblview .EVEN{
+	background: #efefef;
+}
+
+.view .content .tblview .NO, 
+.view .content .tblview .ED, 
+.view .content .tblview .ID {
+	text-align: center;
+	width: 2vw;
+}
+
+.view .content .tblview .NAME{
+	font-weight: bold;
+}
+.view .content .tblview .ADDRESS{
+	width: 30vw;
+}
+ .view .content .tblview .LOGINED{
+	text-align:center;
+}
+.view .content .tblview .DATE{
+	text-align:center;
+	width: 10vw;
+}
+.card-body button:hover{
+	background: #00000010;
+	
+}
+
+/***************************************/
+.footer{
+	padding: 3vh 0;
+	text-align:center;
+}
+/***************************************/
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+	
+}
+
+/* Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+}
+
+/* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) and (max-width: 991.98px) {
+	.acc{
+		position: fixed;
+		z-index: 100;
+	}
+}
+
+/* Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) and (max-width: 1199.98px) {
+	.acc{
+		position: fixed;
+		z-index: 100;
+	}
+}
+
+/* Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+	.acc{
+		position: fixed;
+		z-index: 100;
+	}
+}
