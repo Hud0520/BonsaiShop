@@ -25,9 +25,9 @@ public class BlogController {
         String[] activemenu={"collapsed","collapsed","collapsed","collapsed","collapsed","collapsed","","collapsed"};
         if(keyword != null){
             model.addAttribute("search",keyword);
-            model.addAttribute("blogs",bs.getAllBy(keyword));
+            model.addAttribute("listblogs",bs.getAllBy(keyword));
         }else{
-            model.addAttribute("blogs",bs.getAll());
+            model.addAttribute("listblogs",bs.getAll());
         }
         mv.addObject("menuactive",activemenu);
         return mv;
@@ -37,7 +37,7 @@ public class BlogController {
     {
         ModelAndView mv = new ModelAndView("adv/blog/index");
         String[] activemenu={"collapsed","collapsed","collapsed","collapsed","collapsed","collapsed","","collapsed"};
-        model.addAttribute("blogs",bs.getAll());
+        model.addAttribute("listblogs",bs.getAll());
         mv.addObject("menuactive",activemenu);
         return mv;
     }

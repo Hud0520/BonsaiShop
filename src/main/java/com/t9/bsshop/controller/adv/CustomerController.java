@@ -27,7 +27,7 @@ public class CustomerController {
                                          @RequestParam(value = "txtrole") String role,
                                          @RequestParam(value = "txtAddress") String add)
     {
-        ModelAndView mv = new ModelAndView("/adv/customer/index");
+        ModelAndView mv = new ModelAndView("adv/customer/index");
         String[] activemenu={"collapsed","collapsed","collapsed","collapsed","","collapsed","collapsed","collapsed"};
         mv.addObject("menuactive",activemenu);
         if(!name.equalsIgnoreCase("") || !email.equalsIgnoreCase("") || !add.equalsIgnoreCase("") || !role.equalsIgnoreCase("")) {
@@ -43,7 +43,7 @@ public class CustomerController {
     @RequestMapping (value={""})
     public ModelAndView showCustomerPage(Model model)
     {
-        ModelAndView mv = new ModelAndView("/adv/customer/index");
+        ModelAndView mv = new ModelAndView("adv/customer/index");
         String[] activemenu={"collapsed","collapsed","collapsed","collapsed","","collapsed","collapsed","collapsed"};
         model.addAttribute("accs", as.getAll());
         mv.addObject("menuactive",activemenu);

@@ -19,7 +19,7 @@ import java.sql.Date;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-@Controller
+@Controller("UserOrder")
 @RequestMapping("/order")
 public class OrderController {
 	@Autowired

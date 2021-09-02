@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
+@Controller("HomeAdmin")
 public class HomeController {
     @Autowired
     private ReportService rs;
@@ -27,7 +27,7 @@ public class HomeController {
     public ModelAndView showWelcomePage(Model model)
     {
 
-        ModelAndView mv = new ModelAndView("/adv/index");
+        ModelAndView mv = new ModelAndView("adv/index");
         String[] activemenu={"","collapsed","collapsed","collapsed","collapsed","collapsed","collapsed","collapsed"};
         ArrayList listDataCard = new ArrayList();
         List<Order> odmth = rs.getOrderMonth();

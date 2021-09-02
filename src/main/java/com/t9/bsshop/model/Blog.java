@@ -2,6 +2,7 @@ package com.t9.bsshop.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.sql.Date;
 
@@ -12,7 +13,6 @@ public class Blog extends BaseEntity{
 	@Column private String content;
 	@Column private String thumbnail;
 	@Column private Date createdDate;
-	
 	public String getTitle() {
 		return title;
 	}

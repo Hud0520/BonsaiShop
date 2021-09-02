@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-
+<%@ page import="com.t9.bsshop.model.Blog" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="../template/header.jsp" flush="true"/>
 
@@ -41,7 +41,7 @@
                     </tr>
 
                     <% int i=0;%>
-                    <c:forEach items="${blogs}" var="blog">
+                    <c:forEach items="${listblogs}" var="blog">
                         <% if(++i%2==0){
                             out.print("<tr class=\"EVEN\">");
                         }else {

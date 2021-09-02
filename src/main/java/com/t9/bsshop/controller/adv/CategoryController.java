@@ -67,7 +67,7 @@ public class CategoryController {
             cs.addCat(name,dep,slug);
             switch (typ){
                 case 1: return "redirect:/adv/category";
-                case 2: return "adv/category/ae";
+                case 2: return "/adv/category/ae";
                 default: return "redirect:/adv/";
             }
         }else{

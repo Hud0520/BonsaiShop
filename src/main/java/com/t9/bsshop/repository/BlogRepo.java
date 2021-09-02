@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface BlogRepo extends PagingAndSortingRepository<Blog,Long>, JpaRepository<Blog,Long> {
-	List<Blog> findAllByOrderByCreatedDateAsc(Pageable p);
+public interface BlogRepo extends  PagingAndSortingRepository<Blog,Long>,JpaRepository<Blog,Long> {
+	List<Blog> findAllByOrderByIdAsc(Pageable p);
 }
