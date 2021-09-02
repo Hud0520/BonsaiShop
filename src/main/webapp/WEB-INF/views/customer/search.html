@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Ket qua tim kiem</title>
+	<title>Kết quả timg kiếm</title>
 	<div th:replace="/customer/common::header-css"></div>
 </head>
 <body>
@@ -12,8 +12,8 @@
 			<div th:replace="/customer/common::side-menu"></div>
 		</div>
 		<div class="col-xs-12 col-lg-9 order-0 order-lg-1">
-			<h2 class="heading">Ket qua tim kiem</h2>
-			<p class="text-secondary" th:text="'Tim thay '+${plants.size()}+' ket qua voi tu khoa '+${#request.getParameter('q')}"></p>
+			<h2 class="heading">Kết quả tìm kiếm</h2>
+			<p class="text-secondary" th:text="'Tìm thấy '+${plants.size()}+' kết quả với từ khóa '+${#request.getParameter('q')}"></p>
 			<div th:replace="/customer/common::plant-list"></div>
 		</div>
 	</div>

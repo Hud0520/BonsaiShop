@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Đăng Ky</title>
+	<title>Đăng ký</title>
 	<div th:replace="/customer/common::header-css"></div>
 </head>
 <body>
 <div th:replace="/customer/common::header"></div>
 <div class="login-form">
 	<div class="container">
-		<h1>ĐĂNG KY</h1>
+		<h1>ĐĂNG KÝ</h1>
 		<div class="row">
 			<div class="col-12 col-md-6">
 				<div th:if="${param.error}" class="alert alert-danger">
-					Email da ton tai!
+					Email đã tồn tại! Vui lòng chọn email khác.
 				</div>
 				<form action="" method="post" th:object="${account}">
 					<div class="input-group mb-3">
@@ -23,7 +23,7 @@
 								type="email"
 								class="form-control"
 								name="email"
-								placeholder="Nhap email..."
+								placeholder="Nhập email..."
 								required
 								th:value="*{email}"
 						/>
@@ -36,7 +36,7 @@
 								type="text"
 								class="form-control"
 								name="password"
-								placeholder="Nhap mat khau..."
+								placeholder="Nhập mật khẩu..."
 								required
 								minlength="6"
 								th:value="*{password}"
@@ -50,7 +50,7 @@
 								type="text"
 								class="form-control"
 								name="fullName"
-								placeholder="Nhap ho ten..."
+								placeholder="Nhập họ tên..."
 								required
 								th:name="*{fullName}"
 						/>
@@ -63,7 +63,7 @@
 								type="tel"
 								class="form-control"
 								name="tel"
-								placeholder="Nhap so dien thoai..."
+								placeholder="Nhập số điện thoại..."
 								th:value="*{tel}"
 						/>
 					</div>
@@ -75,33 +75,33 @@
 								type="text"
 								class="form-control"
 								name="address"
-								placeholder="Nhap dia chi..."
+								placeholder="Nhập địa chỉ..."
 								th:value="*{address}"
 						/>
 					</div>
 					<button type="submit" class="btn btn-primary">
 						<i class="bx bx-lock-open text-white"></i>
-						Dang ky
+						Đăng ký
 					</button>
 				</form>
 			</div>
 			<div class="col-12 col-md-6">
-				<p class="text-center">Dang nhap bang tai khoan mang xa hoi</p>
+				<p class="text-center">Đăng nhập bằng tài khoản mạng xã hội</p>
 				<div class="btn-login-group">
-					<button class="btn btn-login btn-login-facebook mb-3">
+					<a href="/oauth2/authorization/facebook" class="btn btn-login btn-login-facebook mb-3">
 						<i class="bx bxl-facebook bx-sm"></i>
-						Dang nhap voi Facebook
-					</button>
-					<button class="btn btn-login btn-login-google mb-3">
+						Đăng nhập với Facebook
+					</a>
+					<a href="/oauth2/authorization/google" class="btn btn-login btn-login-google mb-3">
 						<i class="bx bxl-google bx-sm"></i>
-						Dang nhap voi Google
-					</button>
+						Đăng nhập với Google
+					</a>
 				</div>
 			</div>
 		</div>
 		<p class="mt-2 mb-0">
-			Da co tai khoan?
-			<a href="#">Dang nhap</a>
+			Đã có tài khoản?
+			<a href="#">Đăng nhập</a>
 		</p>
 	</div>
 </div>

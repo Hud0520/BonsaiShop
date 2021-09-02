@@ -88,7 +88,7 @@
                         <input
                                 type="text"
                                 class="form-control"
-                                name="search"
+                                name="q"
                                 placeholder="Tìm Kiếm"
                         />
                         <button type="submit" class="btn btn-primary">Tìm Kiếm</button>
@@ -205,12 +205,12 @@
             </div>
         </div>
     </footer>
-    <script th:src="@{/static/js/bootstrap.min.js}"></script>
+    <script th:src="@{/assets/js/bootstrap.min.js}"></script>
 </th:block>
 <th:block th:fragment="side-menu">
     <div class="list-group">
         <a href="#" class="list-group-item list-group-item-action active"
-        >Cay canh</a
+        >Cây cảnh</a
         >
         <a th:each="cat: ${categories}" th:text="${cat.catName}" th:href="'/categories/'+${cat.id}" class="list-group-item list-group-item-action"
         ></a
@@ -218,7 +218,7 @@
     </div>
     <div class="list-group mt-3">
         <a href="#" class="list-group-item list-group-item-action active"
-        >Tin tuc noi bat</a
+        >Tin tức nổi bật</a
         >
         <a
             th:each="blog: ${recentBlogs}"
