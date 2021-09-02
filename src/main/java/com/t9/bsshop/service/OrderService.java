@@ -5,19 +5,17 @@ import com.t9.bsshop.repository.OrderRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-
-
-import javax.servlet.http.HttpSession;
 @Service
 public class OrderService {
     @Autowired
     private OrderRepo or;
-
 
     public List<Order> getAllOrder(){
         return this.or.findAll(Sort.by(Sort.Direction.DESC,"id"));

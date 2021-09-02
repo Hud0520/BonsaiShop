@@ -13,7 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-<<<<<<< Updated upstream
+
 @Configuration("UserLogin")
 @Order(2)
 class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -22,7 +22,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userService)
 				.passwordEncoder(passwordEncoder());
-=======
+
 @EnableWebSecurity
 public class SecurityConfig {
 	@Configuration
@@ -87,32 +87,11 @@ public class SecurityConfig {
 					.and().defaultSuccessUrl("/")
 					.failureUrl("/login?oauth2_error");
 		}
->>>>>>> Stashed changes
+
 	}
 	@Bean
-	public PasswordEncoder passwordEncoder(){
+	public static PasswordEncoder passwordEncoder(){
 		return new BCryptPasswordEncoder();
 	}
 	
-	@Override
-	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/css/**","/js/**");
-	}
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable();
-		http.authorizeRequests().antMatchers("/login","/register","/","/cart/**","/blog/**","/contact","/categories/**",
-				"/products/**","/register","/search","/intro")
-				.permitAll()
-				.anyRequest().authenticated();
-		http.formLogin().loginPage("/login").usernameParameter("email")
-				.passwordParameter("password").loginProcessingUrl("/do-login")
-				.defaultSuccessUrl("/")
-				.failureUrl("/login?error")
-				.and().oauth2Login().loginPage("/login")
-				.userInfoEndpoint().userService(userService)
-				.and().defaultSuccessUrl("/")
-				.failureUrl("/login?oauth2_error");
-
-	}
 }
