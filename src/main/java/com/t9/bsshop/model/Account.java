@@ -2,7 +2,6 @@ package com.t9.bsshop.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.List;
 
@@ -22,8 +21,6 @@ public class Account extends BaseEntity {
 	@Column private String password;
 	@Column private boolean isAdmin;
 	@Column private String avatar;
-	@OneToMany(mappedBy = "account")
-	private List<Order> orders;
 	
 	public String getEmail() {
 		return email;
@@ -71,14 +68,6 @@ public class Account extends BaseEntity {
 	
 	public void setAdmin(boolean admin) {
 		isAdmin = admin;
-	}
-	
-	public List<Order> getOrders() {
-		return orders;
-	}
-	
-	public void setOrders(List<Order> orders) {
-		this.orders = orders;
 	}
 	
 	public String getAvatar() {

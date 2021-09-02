@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Đăng Ky</title>
+	<div th:replace="/customer/common::header-css"></div>
+</head>
+<body>
+<div th:replace="/customer/common::header"></div>
+<div class="login-form">
+	<div class="container">
+		<h1>ĐĂNG KY</h1>
+		<div class="row">
+			<div class="col-12 col-md-6">
+				<div th:if="${param.error}" class="alert alert-danger">
+					Email da ton tai!
+				</div>
+				<form action="" method="post" th:object="${account}">
+					<div class="input-group mb-3">
+                <span class="input-group-text">
+                  <i class="bx bx-envelope bx-sm"></i>
+                </span>
+						<input
+								type="email"
+								class="form-control"
+								name="email"
+								placeholder="Nhap email..."
+								required
+								th:value="*{email}"
+						/>
+					</div>
+					<div class="input-group mb-3">
+                <span class="input-group-text">
+                  <i class="bx bx-key bx-sm"></i>
+                </span>
+						<input
+								type="text"
+								class="form-control"
+								name="password"
+								placeholder="Nhap mat khau..."
+								required
+								minlength="6"
+								th:value="*{password}"
+						/>
+					</div>
+					<div class="input-group mb-3">
+                <span class="input-group-text">
+                  <i class="bx bx-user bx-sm"></i>
+                </span>
+						<input
+								type="text"
+								class="form-control"
+								name="fullName"
+								placeholder="Nhap ho ten..."
+								required
+								th:name="*{fullName}"
+						/>
+					</div>
+					<div class="input-group mb-3">
+                <span class="input-group-text">
+                  <i class="bx bx-phone bx-sm"></i>
+                </span>
+						<input
+								type="tel"
+								class="form-control"
+								name="tel"
+								placeholder="Nhap so dien thoai..."
+								th:value="*{tel}"
+						/>
+					</div>
+					<div class="input-group mb-3">
+                <span class="input-group-text">
+                  <i class="bx bx-home bx-sm"></i>
+                </span>
+						<input
+								type="text"
+								class="form-control"
+								name="address"
+								placeholder="Nhap dia chi..."
+								th:value="*{address}"
+						/>
+					</div>
+					<button type="submit" class="btn btn-primary">
+						<i class="bx bx-lock-open text-white"></i>
+						Dang ky
+					</button>
+				</form>
+			</div>
+			<div class="col-12 col-md-6">
+				<p class="text-center">Dang nhap bang tai khoan mang xa hoi</p>
+				<div class="btn-login-group">
+					<button class="btn btn-login btn-login-facebook mb-3">
+						<i class="bx bxl-facebook bx-sm"></i>
+						Dang nhap voi Facebook
+					</button>
+					<button class="btn btn-login btn-login-google mb-3">
+						<i class="bx bxl-google bx-sm"></i>
+						Dang nhap voi Google
+					</button>
+				</div>
+			</div>
+		</div>
+		<p class="mt-2 mb-0">
+			Da co tai khoan?
+			<a href="#">Dang nhap</a>
+		</p>
+	</div>
+</div>
+<div th:replace="/customer/common::footer"></div>
+</body>
+</html>

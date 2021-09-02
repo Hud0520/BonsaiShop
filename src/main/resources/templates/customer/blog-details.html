@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title th:text="${blog.title}"></title>
+	<div th:replace="/customer/common::header-css"></div>
+</head>
+<body>
+<div th:replace="/customer/common::header"></div>
+<div class="container mt-3">
+	<div class="row g-2">
+		<div class="col-xs-12 col-lg-3 order-1 order-lg-0">
+			<div th:replace="/customer/common::side-menu"></div>
+		</div>
+		<div class="col-xs-12 col-lg-9 order-0 order-lg-1">
+			<div class="bg-white p-3">
+				<h2 class="text-secondary" th:text="${blog.title}"></h2>
+				<h6 class="text-muted" th:text="${#calendars.format(blog.createdDate,'dd/MM/yyyy')}"></h6>
+				<div th:utext="${blog.content}"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div th:replace="/customer/common::footer"></div>
+</body>
+</html>
