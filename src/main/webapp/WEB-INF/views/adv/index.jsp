@@ -87,9 +87,13 @@
                                 data: {
                                     labels: ["Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"],
                                     datasets: [{
-                                        label: 'Năm:${year}',
+                                        label: "Đơn hàng hợp lệ",
                                         borderColor: 'rgb(47, 128, 237)',
                                         data: ${card.get(4).get(0)},
+                                    },{
+                                        label: 'Đơn hàng không hợp lệ',
+                                        borderColor: 'rgb(255, 51, 51)',
+                                        data: ${card.get(4).get(2)},
                                     }]
                                 },
                                 options: {

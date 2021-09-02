@@ -109,17 +109,25 @@ public class ReportService {
         ArrayList rs= new ArrayList();
         ArrayList rs1= new ArrayList();
         ArrayList rs2= new ArrayList();
+        ArrayList rs3= new ArrayList();
         for(int i =1; i<=calendar.get(Calendar.MONTH)+1; i++){
             int finalI = i;
+            //Hợp lệ
             rs1.add(lsOder.stream()
-                .filter(item -> item.getOrderDate().toLocalDate().getMonthValue() == finalI)
+                .filter(item -> item.getOrderDate().toLocalDate().getMonthValue() == finalI && (!item.getStatus().equals(Order.Status.CANCELED.toString()) && !item.getStatus().equals(Order.Status.DENIED.toString())))
                 .reduce(0l,(sum,details)->sum+1, Long::sum));
+            //Không hợp lệ
+            rs3.add(lsOder.stream()
+                    .filter(item -> item.getOrderDate().toLocalDate().getMonthValue() == finalI && (item.getStatus().equals(Order.Status.CANCELED.toString() ) || item.getStatus().equals(Order.Status.DENIED.toString())))
+                    .reduce(0l,(sum,details)->sum+1, Long::sum));
+            //Doanh thu
             rs2.add(lsOder.stream()
-                    .filter(item -> item.getOrderDate().toLocalDate().getMonthValue() == finalI)
+                    .filter(item -> item.getOrderDate().toLocalDate().getMonthValue() == finalI && (!item.getStatus().equals(Order.Status.CANCELED.toString() ) && !item.getStatus().equals(Order.Status.DENIED.toString())))
                     .reduce(0l,(sum,details)->sum+details.getSum(), Long::sum));
         }
         rs.add(rs1);
         rs.add(rs2);
+        rs.add(rs3);
         return rs;
     }
 
