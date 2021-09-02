@@ -10,9 +10,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 @Controller
 @RequestMapping(value={"/adv/customer"})
@@ -27,7 +30,7 @@ public class CustomerController {
                                          @RequestParam(value = "txtrole") String role,
                                          @RequestParam(value = "txtAddress") String add)
     {
-        ModelAndView mv = new ModelAndView("/adv/customer/index");
+        ModelAndView mv = new ModelAndView("adv/customer/index");
         String[] activemenu={"collapsed","collapsed","collapsed","collapsed","","collapsed","collapsed","collapsed"};
         mv.addObject("menuactive",activemenu);
         if(!name.equalsIgnoreCase("") || !email.equalsIgnoreCase("") || !add.equalsIgnoreCase("") || !role.equalsIgnoreCase("")) {
@@ -43,7 +46,7 @@ public class CustomerController {
     @RequestMapping (value={""})
     public ModelAndView showCustomerPage(Model model)
     {
-        ModelAndView mv = new ModelAndView("/adv/customer/index");
+        ModelAndView mv = new ModelAndView("adv/customer/index");
         String[] activemenu={"collapsed","collapsed","collapsed","collapsed","","collapsed","collapsed","collapsed"};
         model.addAttribute("accs", as.getAll());
         mv.addObject("menuactive",activemenu);
@@ -95,8 +98,11 @@ public class CustomerController {
         pass.equalsIgnoreCase(pass2) && !"".equalsIgnoreCase(tel) && !"".equalsIgnoreCase(addr) && favt != null){
             String path="assets/img/"+favt.getName();
             try {
-                FileOutputStream fo = new FileOutputStream(System.getProperty("user.dir")+"/src/main/webapp/assets/img/"+favt.getName());
+                BufferedImage bImage = ImageIO.read(favt);
+                ImageIO.write(bImage,"jpg",new File(System.getProperty("user.dir")+"/src/main/webapp/assets/img/"+favt.getName()));
             } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
                 e.printStackTrace();
             }
             as.addadm(name,email,pass,tel,addr,favt.getName());

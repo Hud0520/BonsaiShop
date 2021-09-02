@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 
-@Controller
+@Controller("OrderAdmin")
 @RequestMapping(value = {"/adv/order"})
 public class OrderController {
     @Autowired

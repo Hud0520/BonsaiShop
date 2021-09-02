@@ -61,7 +61,7 @@ public class ProductController {
     public ModelAndView prodPage(Model model, @RequestParam(value = "id", required = false) String id,
                                  @RequestParam(value = "err", required = false) String err){
 
-        ModelAndView mv = new ModelAndView("/adv/product/ae");
+        ModelAndView mv = new ModelAndView("adv/product/ae");
         String[] activemenu={"collapsed","collapsed","collapsed","","collapsed","collapsed","collapsed","collapsed"};
         mv.addObject("menuactive",activemenu);
         if(id!=null) {

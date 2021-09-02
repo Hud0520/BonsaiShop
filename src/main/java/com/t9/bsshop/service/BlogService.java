@@ -19,7 +19,7 @@ public class BlogService {
 	@Autowired private BlogRepo blogRepo;
 	@Cacheable("recentBlogs")
 	public List<Blog> getRecentBlogs(){
-		return blogRepo.findAllByOrderByCreatedDateAsc(PageRequest.of(0,10));
+		return blogRepo.findAllByOrderByIdAsc(PageRequest.of(0,10));
 	}
 
 	@Autowired
