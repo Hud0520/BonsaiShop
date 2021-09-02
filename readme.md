@@ -4,5 +4,5 @@ Các công nghệ được sử dụng:
 + Ngôn ngữ chính : Java
 + Cơ sở dữ liệu : PostgreSQL
 + Tầng view : Thymeleaf,Jsp
-+ Framework: Spring boot + Bootstrap5
++ Framework: Spring boot + Bootstrap5</br>
 -> Đây là link demo sản phẩm : https://bonsaishop.herokuapp.com/
