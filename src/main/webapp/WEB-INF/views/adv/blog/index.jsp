@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<%@ page import="com.t9.bsshop.model.Blog" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <jsp:include page="../template/header.jsp" flush="true"/>
 
 <div class="col-md-10">
@@ -41,7 +41,7 @@
                     </tr>
 
                     <% int i=0;%>
-                    <c:forEach items="${listblogs}" var="blog">
+                    <c:forEach items="${blogs}" var="blog">
                         <% if(++i%2==0){
                             out.print("<tr class=\"EVEN\">");
                         }else {
@@ -49,8 +49,8 @@
                         }%>
                         <td class="NO"><input type="checkbox" id="chk1"></td>
                         <td class="NAME"><label for="chk1">${blog.title}</label></td>
-                        <td class="ADDRESS">${blog.content}</td>
-                        <td class="DATE">${blog.createDate}</td>
+                        <td class="ADDRESS"><c:out value="${fn:substring(blog.content, 0, 500)}"/>...</div></td>
+                        <td class="DATE">${blog.createdDate}</td>
                         <td class="ED"><button type="button" onclick="location.href='/adv/blog/ae?id=${blog.id}';" class="btn btn-link"><i class="far fa-edit fs-4"></i></button></td>
                         <td class="ED"><button type="button" class="btn btn-link" onclick="window.confirm('Bạn có chắc muốn xóa tin tức ${blog.title}')? location.href='/adv/blog/ae/del?id=${blog.id}&conf=true' : location.href='/adv/blog/';"><i class="far fa-trash-alt fs-4"></i></button></td>
                     </tr>

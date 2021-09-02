@@ -1,5 +1,6 @@
 package com.t9.bsshop.SecurityConfig;
 
+import com.t9.bsshop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,12 +15,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration("AdminLogin")
 @Order(1)
 class SecurityConfig2 extends WebSecurityConfigurerAdapter {
- 
+    @Autowired private UserService userService;
     @Autowired
     PasswordEncoder passwordEncoder;
  
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userService).passwordEncoder(passwordEncoder);
         auth.inMemoryAuthentication()
         .passwordEncoder(passwordEncoder)
         .withUser("admin").password(passwordEncoder.encode("123456")).roles("ADMIN");
@@ -32,7 +34,7 @@ class SecurityConfig2 extends WebSecurityConfigurerAdapter {
                 .antMatchers("/adv/login")
                 .permitAll()
                 .antMatchers("/adv/**")
-                .hasAnyRole("ADMIN", "USER")
+                .hasAnyRole("ADMIN")
                 .and()
                 .formLogin()
                 .loginPage("/adv/login")

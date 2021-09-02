@@ -15,7 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration("UserLogin")
 @Order(2)
-class SecurityConfig1 extends WebSecurityConfigurerAdapter {
+class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired private UserService userService;
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {

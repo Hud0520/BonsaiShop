@@ -25,7 +25,7 @@ public class BlogService {
 	private BlogRepo br;
 	private DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 	public List<Blog> getAll(){
-		return this.br.findAll();
+		return this.br.findAll(Sort.by(Sort.Direction.DESC,"id"));
 	}
 	public Blog getById(long id){
 		return this.br.getById(id);
