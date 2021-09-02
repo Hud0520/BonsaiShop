@@ -33,7 +33,9 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/login","/register","/cart/**")
+		http.csrf().disable();
+		http.authorizeRequests().antMatchers("/login","/register","/","/cart/**","/blog/**","/contact","/categories/**",
+				"/products/**","/register","/search","/intro")
 				.permitAll()
 				.anyRequest().authenticated();
 		http.formLogin().loginPage("/login").usernameParameter("email")

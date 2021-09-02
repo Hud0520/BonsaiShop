@@ -83,7 +83,7 @@
                 </div>
             </div>
             <div class="header__search">
-                <form action="" method="get">
+                <form action="/search" method="get">
                     <div class="input-group">
                         <input
                                 type="text"
@@ -109,7 +109,7 @@
             <div class="collapse navbar-collapse" id="nav-menu">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Giới Thiệu</a>
+                        <a class="nav-link" href="/intro">Giới Thiệu</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"
@@ -117,21 +117,21 @@
                         ></a>
                         <ul class="nav__categories">
                             <li th:each="cat: ${categories}">
-                                <a th:href="'/categories/'+${cat.slug}" th:text="${cat.catName}"></a>
+                                <a th:href="'/categories/'+${cat.id}" th:text="${cat.catName}"></a>
                             </li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Blog - Tin Tức</a>
+                        <a class="nav-link" href="/blog">Blog - Tin Tức</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Liên Hệ</a>
+                        <a class="nav-link" href="/contact">Liên Hệ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Hỗ Trợ</a>
+                        <a class="nav-link" href="/support">Hỗ Trợ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Dịch Vụ</a>
+                        <a class="nav-link" href="/service">Dịch Vụ</a>
                     </li>
                 </ul>
             </div>
@@ -262,5 +262,33 @@
         </div>
     </div>
 </div>
+
+<ul class="pagination mt-2" th:fragment="pagination">
+    <li th:each="page: ${pages}" class="page-item">
+        <a th:href="'?page='+${page}" class="page-link" th:if="${page!='...'}" th:text="${page}"></a>
+        <span class="page-link disabled" th:if="${page=='...'}">...</span>
+    </li>
+</ul>
+
+<div th:fragment="blog-list" class="row g-2">
+    <div th:each="blog: ${blogs}" class="col-xs-12 col-md-6 col-lg-4">
+        <div class="card h-100">
+            <img
+                th:src="${blog.thumbnail}"
+                alt="img"
+                class="card-img-top"
+            />
+            <div class="card-body">
+                <a th:href="'/blog/'+${blog.id}" class="card-title">
+                    <h5 th:text="${blog.title}">
+                    </h5>
+                </a>
+                <p class="card-text" th:utext="${blog.content.substring(0,100)+'...'}">
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
 </body>
 </html>

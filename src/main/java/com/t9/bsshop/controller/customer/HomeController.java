@@ -14,4 +14,12 @@ public class HomeController {
 		model.addAttribute("plants",plantService.getTopSellingPlant());
 		return "customer/home";
 	}
+	@GetMapping("/contact")
+	public String getContact(){
+		return "customer/contact";
+	}
+	@GetMapping("/intro")
+	public String getIntroPage(){
+		return "customer/intro";
+	}
 }
