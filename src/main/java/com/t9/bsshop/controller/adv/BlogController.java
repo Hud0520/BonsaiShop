@@ -13,7 +13,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
-@Controller
+
+@Controller("BlogAdmin")
 @RequestMapping("/adv/blog")
 public class BlogController {
     @Autowired
