@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
@@ -18,6 +19,7 @@ import java.util.Optional;
 @Service
 public class UserService extends DefaultOAuth2UserService implements UserDetailsService {
 	@Autowired private AccountRepo accRepo;
+	@Autowired private PasswordEncoder encoder;
 	public Account getUserByEmail(String email){
 		return accRepo.findByEmail(email).orElse(null);
 	}
@@ -30,6 +32,7 @@ public class UserService extends DefaultOAuth2UserService implements UserDetails
 		throw new UsernameNotFoundException("");
 	}
 	public void createAccount(Account account){
+		account.setPassword(encoder.encode(account.getPassword()));
 		accRepo.save(account);
 	}
 	public Account getUserById(long id){

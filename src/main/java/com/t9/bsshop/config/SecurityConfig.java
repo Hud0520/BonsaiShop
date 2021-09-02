@@ -13,16 +13,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-
-@Configuration("UserLogin")
-@Order(2)
-class SecurityConfig extends WebSecurityConfigurerAdapter {
-	@Autowired private UserService userService;
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userService)
-				.passwordEncoder(passwordEncoder());
-
 @EnableWebSecurity
 public class SecurityConfig {
 	@Configuration
@@ -34,8 +24,8 @@ public class SecurityConfig {
 					.passwordEncoder(passwordEncoder())
 					.withUser("admin").password(passwordEncoder().encode("123456")).roles("ADMIN");
 		}
-
-
+		
+		
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
 			http.antMatcher("/adv/**").authorizeRequests()
@@ -87,7 +77,6 @@ public class SecurityConfig {
 					.and().defaultSuccessUrl("/")
 					.failureUrl("/login?oauth2_error");
 		}
-
 	}
 	@Bean
 	public static PasswordEncoder passwordEncoder(){

@@ -8,10 +8,10 @@ import java.util.List;
 @Table(name = "orders")
 public class Order extends BaseEntity{
 	public enum Status{
-		PENDING("Dang cho xu ly"),ACCEPTED("Don hang duoc chap nhan"),CANCELED("Don hang bi huy"),
-		DENIED("Don hang bi tu choi"),DELIVERING("Don hang dang duoc giao"),DELIVERED("Giao hang thanh cong");
+		PENDING("Đang chờ xử lý"),ACCEPTED("Đơn hàng được chấp nhận"),CANCELED("Đơn hàng bị hủy"),
+		DENIED("Đơn hàng bị từ chối"),DELIVERING("Đơn hàng đang được giao"),DELIVERED("Giao hàng thành công");
 		private final String label;
-		private Status(String label){
+		Status(String label){
 			this.label=label;
 		}
 		
