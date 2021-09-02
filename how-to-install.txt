@@ -1,2 +1,0 @@
-cd C:\Program Files\PostgreSQL\13\bin
-psql -d plantshop -f db.sql
