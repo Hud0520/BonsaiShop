@@ -20,7 +20,7 @@ public class Plant extends BaseEntity{
 	@Column private String slug;
 	@Column private long price;
 	@Column private int quantity;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "cat_id")
 	private Category category;
 	
