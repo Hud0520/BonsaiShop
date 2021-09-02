@@ -90,7 +90,7 @@ public class OrderService {
 
     }
 	public void createOrder(Order order){
-		orderRepo.save(order);
+		or.save(order);
 	}
 	public Order getSessionOrder(HttpSession session){
 		if(session.getAttribute("order")==null){

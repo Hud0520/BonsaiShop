@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Chi tiet san pham</title>
+	<div th:replace="/customer/common::header-css"></div>
+</head>
+<body>
+<div th:replace="/customer/common::header"></div>
+<div class="container mt-3">
+	<div class="row g-2 overflow-hidden product-intro">
+		<div class="col-xs-12 col-md-4">
+			<div class="product-intro__img">
+				<img
+						th:src="${plant.thumbnail}"
+						alt="img"
+				/>
+			</div>
+		</div>
+		<div class="col-xs-12 col-md-4">
+			<ul class="product-intro__overview">
+				<li><h4 th:text="${plant.name}">Cây hải đường</h4></li>
+				<li>
+					<h5 th:text="${plant.description}">
+					</h5>
+				</li>
+				<li>
+					<strong>Tinh trang: </strong>
+					<span th:if="${plant.quantity>0}" class="text-success">
+                <i class="bx bx-badge-check bx-sm text-success"></i>
+                Con hang
+              </span>
+					<span th:unless="${plant.quantity>0}" class="text-warning">
+                <i class="bx bx-hand bx-sm text-warning"></i>
+                Het hang
+              </span>
+				</li>
+				<li>
+					<strong>Gia ban: </strong>
+					<span class="text-danger" th:text="${plant.price}"></span>
+				</li>
+				<li>
+					<a th:href="'/cart/add?id='+${plant.id}" class="btn btn-primary mt-3">Them vao gio hang</a>
+				</li>
+			</ul>
+		</div>
+		<div class="col-xs-12 col-md-4">
+			<div class="product-intro__commitment">
+				<h4>VƯỜN CÂY VIỆT CAM KẾT:</h4>
+				<ul>
+					<li>
+						<i class="bx bx-check-circle text-success"></i> Cung cấp các
+						loại cây cảnh đa dạng với giá hợp lý
+					</li>
+					<li>
+						<i class="bx bx-check-circle text-success"></i> Miễn phí giao
+						hàng cho đơn hàng trên 500.000đ (áp dụng tại các quận nội thành
+						TP.HaNoi)
+					</li>
+					<li>
+						<i class="bx bx-check-circle text-success"></i> Cung cấp các
+						loại cây cảnh đa dạng với giá hợp lý
+					</li>
+					<li>
+						<i class="bx bx-check-circle text-success"></i> Tư vấn và hướng
+						dẫn chăm sóc cây tận tình Tư vấn kỹ lưỡng các vấn đề phong thuỷ,
+						hợp mệnh - hợp tuổi
+					</li>
+					<li>
+						<i class="bx bx-check-circle text-success"></i> Cho thuê cây
+						cảnh văn phòng Hỗ trợ đổi trả sản phẩm trong vòng 3 ngày sau khi
+						mua
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container mt-3">
+	<div class="bg-white p-3">
+		<h1 class="heading">Chi tiet san pham</h1>
+		<th:block th:utext="${plant.details}"></th:block>
+	</div>
+</div>
+<div class="container mt-3">
+	<div class="bg-white p-3">
+		<h1 class="heading">San pham lien quan</h1>
+		<div th:replace="/customer/common::plant-list"></div>
+	</div>
+</div>
+<div th:replace="/customer/common::footer"></div>
+</body>
+</html>
