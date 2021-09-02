@@ -4,6 +4,7 @@ import com.t9.bsshop.model.Blog;
 import com.t9.bsshop.repository.BlogRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -57,5 +58,11 @@ public class BlogService {
 	}
 	public void delBlog(long id){
 		br.deleteById(id);
+	}
+	public Blog getBlogById(long id){
+		return blogRepo.findById(id).orElse(null);
+	}
+	public Page<Blog> getPagedBlogs(int page){
+		return blogRepo.findAll(PageRequest.of(page,12));
 	}
 }
