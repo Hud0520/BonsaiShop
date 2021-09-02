@@ -100,7 +100,11 @@
                         <th>Số lượng</th>
                         <th colspan="2">Chỉnh Sửa</th>
                     </tr>
-
+                    <c:if test="${orders.size()==0}">
+                        <tr>
+                            <th colspan="8"> Không có đơn hàng nào</th>
+                        </tr>
+                    </c:if>
                     <% int i=0;%>
                     <c:forEach items="${plants}" var="plant">
                         <% if(++i%2==0){
