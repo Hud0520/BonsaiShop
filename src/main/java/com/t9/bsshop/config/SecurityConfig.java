@@ -33,9 +33,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
-		http.authorizeRequests().antMatchers("/blog/**","/contact","/categories/**",
-				"/products/**","/register","/search","/intro")
+		http.authorizeRequests().antMatchers("/login","/register","/","/cart/**")
 				.permitAll()
 				.anyRequest().authenticated();
+		http.formLogin().loginPage("/login").usernameParameter("email")
+				.passwordParameter("password").loginProcessingUrl("/do-login")
+				.defaultSuccessUrl("/")
+				.failureUrl("/login?error")
+				.and().oauth2Login().loginPage("/login")
+				.userInfoEndpoint().userService(userService)
+				.and().defaultSuccessUrl("/")
+				.failureUrl("/login?oauth2_error");
 	}
 }
