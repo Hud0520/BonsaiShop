@@ -51,7 +51,11 @@
                         <th>Thuế</th>
 
                     </tr>
-
+                    <c:if test="${reports.size()==0}">
+                        <tr>
+                            <th colspan="4"> Không có đơn hàng nào</th>
+                        </tr>
+                    </c:if>
                     <% int i=0;%>
                     <c:forEach items="${reports}" var="report">
                         <% if(++i%2==0){
