@@ -32,7 +32,7 @@ public class HomeController {
         ArrayList listDataCard = new ArrayList();
         List<Order> odmth = rs.getOrderMonth();
         listDataCard.add(odmth.size());
-        listDataCard.add(as.getTotal());
+        listDataCard.add(rs.getnewOrder().size());
         listDataCard.add(rs.getHotPlant(odmth).size());
         listDataCard.add(rs.getOldPlant().size());
         listDataCard.add(rs.getSumOrder());
@@ -70,6 +70,15 @@ public class HomeController {
         ModelAndView mv = new ModelAndView("adv/order/index");
         String[] activemenu={"collapsed","collapsed","collapsed","collapsed","collapsed","","collapsed","collapsed"};
         model.addAttribute("orders",rs.getOrderMonth());
+        mv.addObject("menuactive",activemenu);
+        return mv;
+    }
+    @RequestMapping(value={"/adv/order/new"})
+    public ModelAndView showNewOrderPage(Model model)
+    {
+        ModelAndView mv = new ModelAndView("adv/order/index");
+        String[] activemenu={"collapsed","collapsed","collapsed","collapsed","collapsed","","collapsed","collapsed"};
+        model.addAttribute("orders",rs.getnewOrder());
         mv.addObject("menuactive",activemenu);
         return mv;
     }

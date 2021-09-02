@@ -124,4 +124,7 @@ public class ReportService {
     }
 
 
+    public List<Order> getnewOrder() {
+        return rr.getNewOrder();
+    }
 }

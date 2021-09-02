@@ -37,9 +37,9 @@
                         <div class="card text-light bg-warning mb-3" style="max-width: 18rem;">
                             <div class="card-body pt-2">
                                 <h1 class="card-title text-end">${card.get(1)}</h1>
-                                <p>Tổng Khách hàng<br>&nbsp;</p>
+                                <p>Đơn hàng chờ xử lý<br>&nbsp;</p>
                             </div>
-                            <a href="/adv/customer" class="text-light text-decoration-none ">
+                            <a href="/adv/order/new?st=true" class="text-light text-decoration-none ">
                                 <div class="card-footer text-center">
                                     Xem thêm <i class="fas fa-arrow-right"></i>
                                 </div></a>

@@ -61,7 +61,7 @@
                     <div class="row p-3">
                         <div class="col-md-12 text-center">
                             <button type="submit" class="btn btn-primary btn-sm" ><i class="fas fa-sign-in-alt"></i> Sign in</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                            <button type="button" class="btn btn-primary btn-sm" >Exit <i class="fas fa-sign-out-alt"></i></button>
+                            <button type="button" onclick="location.href='/'" class="btn btn-primary btn-sm" >Exit <i class="fas fa-sign-out-alt"></i></button>
                         </div>
                     </div>
                 </div>

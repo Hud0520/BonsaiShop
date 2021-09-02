@@ -18,4 +18,7 @@ public interface ReportRepo extends CrudRepository<Order,Long> {
             " ORDER BY u.orderDate DESC ")
     public List<Report> get();
 
+    @Query(value = "SELECT o FROM Order o WHERE o.status = 'Dang cho xu ly'")
+    public List<Order> getNewOrder();
+
 }
