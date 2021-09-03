@@ -54,7 +54,7 @@
             <div class="content">
                 <div class="border rounded bg-white">
                     <h3 class="bg-info text-white p-1">Thông tin sản phẩm</h3>
-                    <form class="p-1" method="POST" name="info">
+                    <form enctype="multipart/form-data" class="p-1" method="POST" name="info">
                         <div class="row mb-3">
                             <label for="txtName" class="col-sm-2 col-form-label text-end">Tên sản phẩm</label>
                             <div class="col-sm-10">

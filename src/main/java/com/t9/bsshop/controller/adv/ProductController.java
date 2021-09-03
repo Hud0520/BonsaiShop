@@ -9,11 +9,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @Controller
 @RequestMapping("/adv/product")
@@ -22,7 +24,7 @@ public class ProductController {
     private ProductService ps;
     @Autowired
     private CategoryService cs;
-
+    private Path uploadPath=Paths.get(System.getProperty("user.dir")+"/src/main/webapp/assets/img");
     @RequestMapping(value={""}, method = RequestMethod.POST)
     public ModelAndView showProductPage(Model model,
                                         @RequestParam(value = "txtName") String name,
@@ -87,16 +89,17 @@ public class ProductController {
                         @RequestParam(value = "txtPrice") String price,
                         @RequestParam(value = "txtNotes") String dep,
                         @RequestParam(value = "txtSlug") String slug,
-                        @RequestParam(value = "file") File file,
+                        @RequestParam(value = "file") MultipartFile file,
                         @RequestParam(value = "typ") int typ)
     {
-        if(!name.equals("") && !dep.equals("") && !detail.equals("") && !qty.equals("") && !price.equals("") && !slug.equals("") && file !=null) {
+        if(!name.equals("") && !dep.equals("") && !detail.equals("") && !qty.equals("") && !price.equals("") && !slug.equals("") && !file.isEmpty()) {
+            String fileName=String.valueOf(System.currentTimeMillis());
             try {
-                FileOutputStream fo = new FileOutputStream(System.getProperty("user.dir")+"/src/main/webapp/assets/img/"+file.getName());
-            } catch (FileNotFoundException e) {
+                file.transferTo(uploadPath.resolve(fileName));
+            } catch (IOException e) {
                 e.printStackTrace();
             }
-            ps.addplant(name, detail, cs.getById(id), dep, slug, qty, price, file.getName());
+            ps.addplant(name, detail, cs.getById(id), dep, slug, qty, price, fileName);
             switch (typ){
                 case 1: return "redirect:/adv/product";
                 case 2: return "redirect:/adv/product/ae";
@@ -117,16 +120,21 @@ public class ProductController {
                         @RequestParam(value = "txtPrice") String price,
                         @RequestParam(value = "txtNotes") String dep,
                         @RequestParam(value = "txtSlug") String slug,
-                        @RequestParam(value = "file") File file,
+                        @RequestParam(value = "file") MultipartFile file,
                         @RequestParam(value = "id") long id)
     {
         if(!name.equals("") && !dep.equals("") && !detail.equals("") && !qty.equals("") && !price.equals("") && !slug.equals("") && file !=null) {
-            try {
-                FileOutputStream fo = new FileOutputStream(System.getProperty("user.dir")+"/src/main/webapp/assets/img/"+file.getName());
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
+            String fileName=ps.getById(id).getThumbnail();
+            if(!file.isEmpty()){
+                try {
+                    Files.deleteIfExists(uploadPath.resolve(fileName));
+                    fileName=String.valueOf(System.currentTimeMillis());
+                    file.transferTo(uploadPath.resolve(fileName));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
-            ps.editplant(id, name, detail, cs.getById(idc), dep, slug, qty, price, file.getName());
+            ps.editplant(id, name, detail, cs.getById(idc), dep, slug, qty, price, fileName);
             return "redirect:/adv/product";
         }else
         {
@@ -137,11 +145,17 @@ public class ProductController {
 
     @RequestMapping(value = {"/ae/del"})
     public String plantdelPage(Model model, @RequestParam(value = "conf") String conf,
-                                 @RequestParam(value = "id") String id)
+                                 @RequestParam(value = "id") long id)
     {
         if (conf.equalsIgnoreCase("true")){
-            if(!ps.delPlant(Integer.parseInt(id))){
+            String fileName=ps.getById(id).getThumbnail();
+            if(!ps.delPlant(id)){
                 return "redirect:/adv/product?deler=true";
+            }
+            try {
+                Files.deleteIfExists(uploadPath.resolve(fileName));
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
         return "redirect:/adv/product";

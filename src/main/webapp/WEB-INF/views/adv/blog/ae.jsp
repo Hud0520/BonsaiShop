@@ -47,7 +47,7 @@
             <div class="content col-md-12  ">
                 <div class="border rounded bg-white">
                     <h3 class="bg-info text-white p-1">Thông tin Blog</h3>
-                    <form class="p-1" name="info" method="post">
+                    <form enctype="multipart/form-data" class="p-1" name="info" method="post">
                         <div class="row m-3">
                             <label for="txtName" class="col-sm-2 col-form-label text-end">Title</label>
                             <div class="col-sm-10">

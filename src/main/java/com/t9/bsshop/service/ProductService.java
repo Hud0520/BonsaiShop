@@ -19,7 +19,7 @@ public class ProductService {
     public List<Plant> getAll(){
         return this.pr.findAll(Sort.by(Sort.Direction.DESC,"id"));
     }
-    public Object getById(long id){
+    public Plant getById(long id){
         return this.pr.getById(id);
     }
     public List<Plant> getAllBy(String name,String cat, String price){

@@ -4,11 +4,6 @@ spring:
     username: postgres
     password: root
     driver-class-name: org.postgresql.Driver
-  jpa:
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
   security:
     oauth2:
       client:
@@ -28,3 +23,6 @@ spring:
         provider:
           facebook:
             user-info-uri: https://graph.facebook.com/v3.0/me?fields=id,name,email,picture.width(50).height(50)
+  servlet:
+    multipart:
+      max-file-size: 12MB
