@@ -4,6 +4,7 @@
     String now=dateFormat.format(new java.util.Date()).trim();
 %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="name" value=""/>
 <c:set var="dep" value=""/>
@@ -13,7 +14,7 @@
 <c:if test="${blog.id != null}">
     <c:set var="name" value="${blog.title}"/>
     <c:set var="content" value="${blog.content}"/>
-    <fmt:formatDate value="${blog.createDate}" pattern="yyyy-MM-dd" var="create"></fmt:formatDate>
+    <c:set value="${blog.createdDate}" var="create"></c:set>
     <c:set var="title" value="Sửa Blog - tin tức"/>
 </c:if>
 <c:if test="${err}">
@@ -66,7 +67,7 @@
                         <div class="row m-3">
                             <label for="txtSlug" class="col-sm-2 col-form-label text-end">Thumbnail</label>
                             <div class="col-sm-10">
-                                <input type="file" name="txtSlug" class="form-control" id="txtSlug"">
+                                <input type="file" name="txtSlug" class="form-control" id="txtSlug">
                             </div>
                         </div>
                         <div class="row m-3">
